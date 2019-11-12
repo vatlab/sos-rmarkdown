@@ -55,7 +55,7 @@ setup(
     package_dir={'': 'src'},
     python_requires='>=3.6',
     install_requires=[
-        'sos>=0.20.9',
+        'sos>=0.20.8',
         'sos-notebook>=0.20.9',
         'sos-r',
         'markdown-kernel',
