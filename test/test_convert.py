@@ -15,7 +15,7 @@ class TestConvert(unittest.TestCase):
 
     def testConvertHTML(self):
         for filename in ('example.ipynb', 'executed.ipynb', 'example.html',
-                         'executed.html'):
+                         'executed.html', 'example1.html'):
             if os.path.isfile(filename):
                 os.remove(filename)
 
@@ -39,8 +39,14 @@ class TestConvert(unittest.TestCase):
             subprocess.call(
                 'sos convert example.Rmd example.html --execute', shell=True),
             0)
-        self.assertTrue(os.path.isfile('executed.html'))
+        self.assertTrue(os.path.isfile('example.html'))
 
+
+        self.assertEqual(
+            subprocess.call(
+                'sos convert example.Rmd example1.html --execute --template sos-report-toc-v2', shell=True),
+            0)
+        self.assertTrue(os.path.isfile('example1.html'))
 
 if __name__ == '__main__':
     unittest.main()
