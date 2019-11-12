@@ -19,7 +19,7 @@ before_install:
     - conda info -a
     # downgrade python if needed
     - conda create -n python_test python=$TRAVIS_PYTHON_VERSION anaconda
-    - source activate python_test   
+    - source activate python_test
     # sos
     - conda install -c conda-forge sos sos-notebook sos-r sos-python sos-papermill r-reticulate r-ggplot2
 
@@ -30,11 +30,7 @@ install: "pip install . -U"
 before_script:
     - cd test
 script:
-    - pytest -x -v  --cov-report=xml
-
-after_success:
-    - coverage combine
-    - coveralls
+    - pytest -x -v
 
 notifications:
     email:
