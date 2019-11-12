@@ -1,0 +1,45 @@
+dist: xenial
+group: edge
+os:
+    - linux
+    # travis does not support python on osx yet (https://github.com/travis-ci/travis-ci/issues/4729)
+language: python
+python:
+    - "3.6"
+addons:
+    chrome: stable
+before_install:
+    # Base SoS
+    - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    - bash miniconda.sh -b -p $HOME/miniconda
+    - export PATH="$HOME/miniconda/bin:$PATH"
+    - hash -r
+    - conda config --set always_yes yes --set changeps1 no
+    - conda update -q conda
+    - conda info -a
+    # downgrade python if needed
+    - conda create -n python_test python=$TRAVIS_PYTHON_VERSION anaconda
+    - source activate python_test   
+    # sos
+    - conda install -c conda-forge sos sos-notebook sos-r sos-python sos-papermill r-reticulate r-ggplot2
+
+sudo: required
+services:
+    - docker
+install: "pip install . -U"
+before_script:
+    - cd test
+script:
+    - pytest -x -v  --cov-report=xml
+
+after_success:
+    - coverage combine
+    - coveralls
+
+notifications:
+    email:
+        recipients:
+            - ben.bob@gmail.com
+        on_success: never
+        on_failure: always
+
