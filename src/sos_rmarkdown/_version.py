@@ -4,4 +4,4 @@
 # Distributed under the terms of the 3-clause BSD License.
 
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
