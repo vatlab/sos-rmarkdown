@@ -71,19 +71,23 @@ is converted to a markdown cell that is evaluated in a R kernel as follows
 Code blocks in Rmarkdown supports [multiple languages](https://bookdown.org/yihui/rmarkdown/language-engines.html) such as Python, Julia, and Stata. A Jupyter notebook with an `ir` kernel can only evaluate R scripts, but a SoS Notebook can include multiple kernels in one notebook.
 
 For example, code blocks such as
+
+````
 ```{python}
 def f(x):
   return x + 2
 f(2)
 ```
-
+````
 and
 
+````
 ```{r engine="python"}
 def f(x):
   return x + 2
 f(2)
 ```
+````
 
 are converted to cells with approprivate kernels such as
 
@@ -95,10 +99,12 @@ Note that SoS Notebook supports the [use of multiple kernels in one notebook](ht
 
 Rmarkdown's code blocks accept options such as `echo=FALSE` and `include=FALSE` which controls the output of input and/or output of code blocks. There were no corresponding features for classic Jupyter Notebook but Jupyter Lab supports hiding of input and/or output of cells using cell metadata. The `sos-rmarkdown` converter understands these options and converts code blocks such as,
 
+````
 ```{r echo=FALSE}
 arr <- rnorm(5)
 cat(arr)
 ```
+````
 
 with appropriate open/colapse status
 
