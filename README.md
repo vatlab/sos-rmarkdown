@@ -52,7 +52,7 @@ sos convert input.rmd output.html --execute --template sos-report-toc-v2
 
 ## Features
 
-Although there are already a number of Rmd to Jupyter converters such as [notedown](https://github.com/aaren/notedown), [RMD-to-Jupyter](https://github.com/lecy/RMD-to-Jupyter) (uses rpy2), they lack support for some of the Rmakdown features due to limitations of the Jupyter notebook platform. Fortunately, SoS Notebook, especially its Jupyter Lab extension addresses most of the limitations and offers an almost perfect conversion from R markdown to Jupyter notebook.
+Although there are already a number of Rmd to Jupyter converters such as [notedown](https://github.com/aaren/notedown), [RMD-to-Jupyter](https://github.com/lecy/RMD-to-Jupyter) (uses rpy2), [Jupyter.R](https://rmarkdown.rstudio.com/docs/reference/convert_ipynb.html), they lack support for some of the Rmakdown features due to limitations of the Jupyter notebook platform. Fortunately, SoS Notebook, especially its Jupyter Lab extension addresses most of the limitations and offers an almost perfect conversion from R markdown to Jupyter notebook.
 
 ### Markdown text with inline expressions
 
@@ -68,7 +68,7 @@ is converted to a markdown cell that is evaluated in a R kernel as follows
 
 ### Code blocks in multiple languages
 
-Code blocks in Rmarkdown supports [multiple languages](https://bookdown.org/yihui/rmarkdown/language-engines.html) such as Python, Julia, and Stata. A Jupyter notebook with an `ir` kernel can only evaluate R scripts, but a SoS Notebook can include multiple kernels in one notebook.
+Code blocks in Rmarkdown supports [multiple languages](https://bookdown.org/yihui/rmarkdown/language-engines.html) such as Python, Julia, and Stata. A Jupyter notebook with an `ir` kernel can only evaluate R scripts, and the use of magics such as `%%python` is rather limiting. SoS Notebook supports the [use of multiple kernels in one notebook](https://vatlab.github.io/blog/post/sos-notebook/) and can accommodate code blocks in multiple languages. 
 
 For example, code blocks such as
 
@@ -93,7 +93,7 @@ are converted to cells with approprivate kernels such as
 
 ![image](https://user-images.githubusercontent.com/9889312/68706553-a792db80-0555-11ea-92e8-633a75b36894.png)
 
-Note that SoS Notebook supports the [use of multiple kernels in one notebook](https://vatlab.github.io/blog/post/sos-notebook/) and allows data exchange between live kernels. This is differnt from Rmarkdown's multi-language approach and might lead to different results. For example, whereas multiple Python3 cells are always executed by the same Python kernel, RMarkdown's Python code blocks can be executed independently (if without `reticulate`).
+Note that SoS Notebook supports the execution of multiple kernels and allows data exchange between live kernels. This is differnt from Rmarkdown's multi-language approach and might lead to different results. For example, whereas multiple Python3 cells are always executed by the same Python kernel, RMarkdown's Python code blocks can be executed independently (if without `reticulate`).
 
 ### Hiding input and/or output of code blocks
 
