@@ -57,7 +57,7 @@ sos convert input.rmd output.html --execute --template sos-report-toc-v2
 
 ## Features
 
-Although there are already a number of Rmd to Jupyter converters such as [notedown](https://github.com/aaren/notedown), [RMD-to-Jupyter](https://github.com/lecy/RMD-to-Jupyter), [ipymd](https://github.com/chronitis/ipyrmd), [rmd2jupyter](https://github.com/mkearney/rmd2jupyter), they lack support for some of the Rmakdown features due to limitations of the Jupyter notebook platform. SoS Notebook, especially its Jupyter Lab extension addresses most of the limitations and offers an almost perfect conversion from R markdown to Jupyter notebook.
+Although there are already a number of Rmd to Jupyter converters such as [notedown](https://github.com/aaren/notedown), [RMD-to-Jupyter](https://github.com/lecy/RMD-to-Jupyter), [ipymd](https://github.com/chronitis/ipyrmd), and [rmd2jupyter](https://github.com/mkearney/rmd2jupyter), they lack support for some of the Rmakdown features due to limitations of the Jupyter notebook platform. SoS Notebook, especially its Jupyter Lab extension addresses most of the limitations and offers an almost perfect conversion from R markdown to Jupyter notebook.
 
 ### Markdown text with inline expressions
 
