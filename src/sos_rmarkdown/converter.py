@@ -37,8 +37,13 @@ def Rmarkdown_to_notebook(rmarkdown_file,
     code_count = 1
 
     #
-    with open(rmarkdown_file) as script:
-        rmdlines = script.readlines()
+    try:
+        with open(rmarkdown_file) as script:
+            rmdlines = script.readlines()
+    except UnicodeDecodeError:
+        env.logger.warning(f'Ignoring non-UTF8 characters from input Rmd file.')
+        with open(rmarkdown_file, errors='ignore') as script:
+            rmdlines = script.readlines()
 
     def add_cell(cells, content, cell_type, metainfo):
         nonlocal code_count
