@@ -5,7 +5,7 @@
 
 # sos-rmarkdown
 
-The RMarkdown format is a markdown format with embedded R expressions and code blocks, and is extremely popular for R users. SoS Notebook is an extension to Jupyter Notebook that allows the use of multiple kernels in one notebook, and enables RMarkdown-like features such as markdown text with inline expressions and code blocks in multiple languages. `sos-rmarkdown` provides an almost lossless converter to convert Rmarkdown files to SoS notebooks using the `sos` file conversion mechanism.
+The [RMarkdown format](https://rmarkdown.rstudio.com/) is a markdown format with embedded R expressions and code blocks, and is extremely popular for R users. [SoS Notebook](https://github.com/vatlab/sos-notebook/) is an extension to Jupyter Notebook that allows the use of multiple kernels in one notebook, and enables RMarkdown-like features such as markdown text with inline expressions and code blocks in multiple languages. `sos-rmarkdown` is an extension module to [SoS Workflow System and Polyglot Notebook](https://vatlab.github.io/sos-docs/) and provides an almost lossless converter from Rmarkdown files to SoS notebooks using the `sos` file conversion mechanism.
 
 ## Installation
 
@@ -55,9 +55,11 @@ These steps could be combined with a `Rmd` -> `HTML` converter using the followi
 sos convert input.rmd output.html --execute --template sos-report-toc-v2
 ```
 
+Note that the `--execute` option essentially uses [`sos-papermill`](https://github.com/vatlab/sos-papermill) to execute the notebook with an SoS kernel. You can execute the notebook directly with command `papermill --engine sos` if you would like to use advanced features of [papermill](https://github.com/nteract/papermill).
+
 ## Features
 
-Although there are already a number of Rmd to Jupyter converters such as [notedown](https://github.com/aaren/notedown), [RMD-to-Jupyter](https://github.com/lecy/RMD-to-Jupyter) (uses rpy2), [Jupyter.R](https://rmarkdown.rstudio.com/docs/reference/convert_ipynb.html), they lack support for some of the Rmakdown features due to limitations of the Jupyter notebook platform. SoS Notebook, especially its Jupyter Lab extension addresses most of the limitations and offers an almost perfect conversion from R markdown to Jupyter notebook.
+Although there are already a number of Rmd to Jupyter converters such as [notedown](https://github.com/aaren/notedown), [RMD-to-Jupyter](https://github.com/lecy/RMD-to-Jupyter), [ipymd](https://github.com/chronitis/ipyrmd), and [rmd2jupyter](https://github.com/mkearney/rmd2jupyter), they lack support for some of the Rmakdown features due to limitations of the Jupyter notebook platform. SoS Notebook, especially its Jupyter Lab extension addresses most of the limitations and offers an almost perfect conversion from R markdown to Jupyter notebook.
 
 ### Markdown text with inline expressions
 
