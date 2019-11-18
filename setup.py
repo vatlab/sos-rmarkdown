@@ -55,7 +55,7 @@ setup(
     package_dir={'': 'src'},
     python_requires='>=3.6',
     install_requires=[
-        'sos>=0.20.8',
+        'sos>=0.20.9',
         'sos-notebook>=0.20.9',
         'sos-r',
         'markdown-kernel',
@@ -66,9 +66,6 @@ setup(
     ],
     entry_points='''
 [sos_converters]
-rmd-ipynb.parser = sos_rmarkdown.converter:get_Rmarkdown_to_notebook_parser
-rmd-ipynb.func = sos_rmarkdown.converter:Rmarkdown_to_notebook
-
-rmd-html.parser = sos_rmarkdown.converter:get_Rmarkdown_to_html_parser
-rmd-html.func = sos_rmarkdown.converter:Rmarkdown_to_html
+rmd-ipynb = sos_rmarkdown.converter:RmarkdownToNotebookConverter
+rmd-html = sos_rmarkdown.converter:RmarkdownToHTMLConverter
 ''')

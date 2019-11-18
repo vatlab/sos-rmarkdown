@@ -4,11 +4,8 @@
 # Distributed under the terms of the 3-clause BSD License.
 
 import os
-import shutil
 import subprocess
 import unittest
-
-from sos_notebook.converter import notebook_to_script, script_to_notebook
 
 
 class TestConvert(unittest.TestCase):
@@ -41,12 +38,12 @@ class TestConvert(unittest.TestCase):
             0)
         self.assertTrue(os.path.isfile('example.html'))
 
-
         self.assertEqual(
             subprocess.call(
-                'sos convert example.Rmd example1.html --execute --template sos-report-toc-v2', shell=True),
-            0)
+                'sos convert example.Rmd example1.html --execute --template sos-report-toc-v2',
+                shell=True), 0)
         self.assertTrue(os.path.isfile('example1.html'))
+
 
 if __name__ == '__main__':
     unittest.main()
