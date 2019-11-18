@@ -18,6 +18,7 @@ from sos_notebook.converter import execute_sos_notebook, NotebookToHTMLConverter
 
 
 class RmarkdownToNotebookConverter(object):
+
     def __init__(self, *args, **kwargs):
         self.code_count = 1
 
@@ -53,8 +54,7 @@ class RmarkdownToNotebookConverter(object):
             cells.append(
                 new_code_cell(
                     # remove any trailing blank lines...
-                    source=f'%expand `r ` --in R\n' +
-                    ''.join(content).strip(),
+                    source=f'%expand `r ` --in R\n' + ''.join(content).strip(),
                     execution_count=self.code_count,
                     metadata=metainfo))
             self.code_count += 1
@@ -79,7 +79,6 @@ class RmarkdownToNotebookConverter(object):
                 f'Ignoring non-UTF8 characters from input Rmd file.')
             with open(rmarkdown_file, errors='ignore') as script:
                 rmdlines = script.readlines()
-       
 
         used_kernels = [['SoS', 'sos', '', '']]
         Rmd_header = {}
@@ -154,7 +153,8 @@ class RmarkdownToNotebookConverter(object):
                     state = CODE
                     # only add MD cells with non-whitespace content
                     if any([c.strip() for c in celldata]):
-                        self.add_cell(cells, celldata, 'markdown', metainfo=meta)
+                        self.add_cell(
+                            cells, celldata, 'markdown', metainfo=meta)
 
                     celldata = []
 
@@ -239,7 +239,8 @@ class RmarkdownToNotebookConverter(object):
                             any(c.strip() for c in celldata)) or (
                                 celldata and
                                 re_md_major_header.match(celldata[-1])):
-                        self.add_cell(cells, celldata, 'markdown', metainfo=meta)
+                        self.add_cell(
+                            cells, celldata, 'markdown', metainfo=meta)
                         celldata = []
                         meta = {}
                     # cell.source in ipynb does not include implicit newlines
