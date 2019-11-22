@@ -117,7 +117,7 @@ class RmarkdownToNotebookConverter(object):
             (?P<engine_name>                 # eignine name
             [a-zA-Z0-9]+                     # r
             )                                # end of engine name
-            (\s+                             # space
+            ([\s|,]+                         # space or comma #4
             (?P<engine_options>.*)           #
             )?                               # options
             }                                # }
