@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/vatlab/sos-rmarkdown.svg?branch=master)](https://travis-ci.org/vatlab/sos-rmarkdown)
 
 
-# sos-rmarkdown
+# sos-rmarkdown: an RMarkdown to SoS Notebook converter
 
 The [RMarkdown format](https://rmarkdown.rstudio.com/) is a markdown format with embedded R expressions and code blocks, and is extremely popular for R users. [SoS Notebook](https://github.com/vatlab/sos-notebook/) is an extension to Jupyter Notebook that allows the use of multiple kernels in one notebook, and enables RMarkdown-like features such as markdown text with inline expressions and code blocks in multiple languages. `sos-rmarkdown` is an extension module to [SoS Workflow System and Polyglot Notebook](https://vatlab.github.io/sos-docs/) and provides an almost lossless converter from Rmarkdown files to SoS notebooks using the `sos` file conversion mechanism.
 
