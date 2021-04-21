@@ -18,7 +18,7 @@ pip install sos-rmarkdown
 or
 
 ```
-conda -c conda-forge sos-rmarkdown
+conda install -c conda-forge sos-rmarkdown
 ```
 
 if you are using a conda environment. Note that 
