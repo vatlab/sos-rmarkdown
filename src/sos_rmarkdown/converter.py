@@ -16,6 +16,27 @@ from nbformat.v4 import new_code_cell, new_markdown_cell, new_notebook
 from sos.utils import env
 from sos_notebook.converter import execute_sos_notebook, NotebookToHTMLConverter
 
+class NoDatesSafeLoader(yaml.SafeLoader):
+    @classmethod
+    def remove_implicit_resolver(cls, tag_to_remove):
+        """
+        Remove implicit resolvers for a particular tag
+
+        Takes care not to modify resolvers in super classes.
+
+        We want to load datetimes as strings, not dates, because we
+        go on to serialise as json which doesn't have the advanced types
+        of yaml, and leads to incompatibilities down the track.
+        """
+        if not 'yaml_implicit_resolvers' in cls.__dict__:
+            cls.yaml_implicit_resolvers = cls.yaml_implicit_resolvers.copy()
+
+        for first_letter, mappings in cls.yaml_implicit_resolvers.items():
+            cls.yaml_implicit_resolvers[first_letter] = [(tag, regexp)
+                                                         for tag, regexp in mappings
+                                                         if tag != tag_to_remove]
+
+NoDatesSafeLoader.remove_implicit_resolver('tag:yaml.org,2002:timestamp')
 
 class RmarkdownToNotebookConverter(object):
 
@@ -90,7 +111,7 @@ class RmarkdownToNotebookConverter(object):
         if len(delim_lines) >= 2 and delim_lines[1] - delim_lines[0] > 1:
             yamltext = '\n'.join(rmdlines[delim_lines[0] + 1:delim_lines[1]])
             try:
-                Rmd_header = yaml.safe_load(yamltext)
+                Rmd_header = yaml.load(yamltext, Loader=NoDatesSafeLoader)
             except yaml.YAMLError as e:
                 env.logger.warning(
                     f"Error reading document metadata block: {e}")
