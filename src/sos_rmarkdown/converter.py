@@ -343,7 +343,6 @@ class RmarkdownToNotebookConverter(object):
                 nbformat.write(nb, new_nb, 4)
             env.logger.info(f'Jupyter notebook saved to {output_file}')
 
-
 #
 # RMarkdown -> HTML
 #
@@ -392,7 +391,8 @@ class RmarkdownToHTMLConverter(object):
             sargs=sargs,
             unknown_args=unknown_args)
         # if --execute is specified, it must have been execute during Rmarkdown_to_notebook
-        sargs.execute = False
+        if sargs:
+            sargs.execute = []
         #
         try:
             NotebookToHTMLConverter().convert(notebook_file, output_file, sargs,
