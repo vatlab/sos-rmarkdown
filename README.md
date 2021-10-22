@@ -21,7 +21,7 @@ or
 conda -c conda-forge sos-rmarkdown
 ```
 
-if you are using a conda environment. Note that 
+if you are using a conda environment. Note that
 
 1. The conda installation of `sos-r` will install the conda version of `R` (e.g. [`r-base`](https://anaconda.org/conda-forge/r-base)).
 
@@ -55,7 +55,13 @@ These steps could be combined with a `Rmd` -> `HTML` converter using the followi
 sos convert input.rmd output.html --execute --template sos-report-toc-v2
 ```
 
-Note that the `--execute` option essentially uses [`sos-papermill`](https://github.com/vatlab/sos-papermill) to execute the notebook with an SoS kernel. You can execute the notebook directly with command `papermill --engine sos` if you would like to use advanced features of [papermill](https://github.com/nteract/papermill).
+Note
+
+* If the `.Rmd` file does not have inline expressions and does not have code
+  blocks using Python and other languages, and `--execute` option is not used,
+  the resulting notebook will be a notebook with an `R` kernel.
+
+* The `--execute` option essentially uses [`sos-papermill`](https://github.com/vatlab/sos-papermill) to execute the notebook with an SoS kernel. You can execute the notebook directly with command `papermill --engine sos` if you would like to use advanced features of [papermill](https://github.com/nteract/papermill).
 
 ## Features
 
@@ -75,7 +81,7 @@ is converted to a markdown cell that is evaluated in a R kernel as follows
 
 ### Code blocks in multiple languages
 
-Code blocks in Rmarkdown supports [multiple languages](https://bookdown.org/yihui/rmarkdown/language-engines.html) such as Python, Julia, and Stata. A Jupyter notebook with an `ir` kernel can only evaluate R scripts, and the use of magics such as `%%python` is rather limiting. SoS Notebook supports the [use of multiple kernels in one notebook](https://vatlab.github.io/blog/post/sos-notebook/) and can accommodate code blocks in multiple languages. 
+Code blocks in Rmarkdown supports [multiple languages](https://bookdown.org/yihui/rmarkdown/language-engines.html) such as Python, Julia, and Stata. A Jupyter notebook with an `ir` kernel can only evaluate R scripts, and the use of magics such as `%%python` is rather limiting. SoS Notebook supports the [use of multiple kernels in one notebook](https://vatlab.github.io/blog/post/sos-notebook/) and can accommodate code blocks in multiple languages.
 
 For example, code blocks such as
 

@@ -262,26 +262,46 @@ class RmarkdownToNotebookConverter(object):
         elif any([c.strip() for c in celldata]):
             self.add_cell(cells, celldata, 'markdown', metainfo=meta)
         #
-        # create header
-        metadata = {
-            'kernelspec': {
-                "display_name": "SoS",
-                "language": "sos",
-                "name": "sos"
-            },
-            "language_info": {
-                "file_extension": ".sos",
-                "mimetype": "text/x-sos",
-                "name": "sos",
-                "pygments_lexer": "python",
-                'nbconvert_exporter': 'sos_notebook.converter.SoS_Exporter',
-            },
-            'sos': {
-                'kernels': used_kernels
+        if len(used_kernels
+              ) <= 2 and not has_inline_markdown and not sargs.execute:
+            # if sos only or sos+r, we do not need sos
+            metadata = {
+                "kernelspec": {
+                    "display_name": "R",
+                    "language": "R",
+                    "name": "ir"
+                },
+                "language_info": {
+                    "codemirror_mode": "r",
+                    "file_extension": ".r",
+                    "mimetype": "text/x-r-source",
+                    "name": "R",
+                    "pygments_lexer": "r",
+                    "version": "3.6.3"
+                }
             }
-        }
-        if has_inline_markdown:
-            metadata['sos']['kernels'].append(['Markdown', 'markdown', '', ''])
+        else:
+            # create header
+            metadata = {
+                'kernelspec': {
+                    "display_name": "SoS",
+                    "language": "sos",
+                    "name": "sos"
+                },
+                "language_info": {
+                    "file_extension": ".sos",
+                    "mimetype": "text/x-sos",
+                    "name": "sos",
+                    "pygments_lexer": "python",
+                    'nbconvert_exporter': 'sos_notebook.converter.SoS_Exporter',
+                },
+                'sos': {
+                    'kernels': used_kernels
+                }
+            }
+            if has_inline_markdown:
+                metadata['sos']['kernels'].append(
+                    ['Markdown', 'markdown', '', ''])
         if Rmd_header:
             metadata['Rmd_chunk_options'] = Rmd_header
 
